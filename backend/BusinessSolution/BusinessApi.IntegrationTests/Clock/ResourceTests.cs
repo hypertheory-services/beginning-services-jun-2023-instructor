@@ -1,6 +1,9 @@
 ﻿
 
 using Alba;
+using BusinessApi.Adapters;
+using Microsoft.Extensions.DependencyInjection;
+using Moq;
 using System.Net;
 
 namespace BusinessApi.IntegrationTests.Clock;
@@ -24,7 +27,15 @@ public class ResourceTests
     {
         var expected = new GetClockResponse(true, null);
 
-        var host = await AlbaHost.For<Program>();
+        var host = await AlbaHost.For<Program>(config =>
+        {
+            var systemTime = new Mock<ISystemTime>();
+            systemTime.Setup(c => c.GetCurrentLocalTime()).Returns(new DateTime(2023, 6, 12, 16, 12, 18));
+            config.ConfigureServices(services =>
+            {
+                services.AddSingleton<ISystemTime>(systemTime.Object);
+            });
+        });
 
         var response = await host.Scenario(api =>
         {
@@ -41,7 +52,15 @@ public class ResourceTests
         // This will fail on saturdays, sundays, before 9 and after 5
         var expected = new GetClockResponse(false, null);
 
-        var host = await AlbaHost.For<Program>();
+        var host = await AlbaHost.For<Program>(config =>
+        {
+            var systemTime = new Mock<ISystemTime>();
+            systemTime.Setup(c => c.GetCurrentLocalTime()).Returns(new DateTime(2023, 6, 12, 17, 00, 00));
+            config.ConfigureServices(services =>
+            {
+                services.AddSingleton<ISystemTime>(systemTime.Object);
+            });
+        });
 
         var response = await host.Scenario(api =>
         {
@@ -49,6 +68,7 @@ public class ResourceTests
         });
 
         var responseMessage = response.ReadAsJson<GetClockResponse>();
+        Assert.NotNull(responseMessage);
 
         //.Assert.Equal(expected, responseMessage);
         Assert.False(responseMessage.IsOpen);
