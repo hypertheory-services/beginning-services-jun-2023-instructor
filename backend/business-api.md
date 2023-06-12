@@ -28,3 +28,5 @@ GET /clock
 ```
 
 Open 9-5, Monday-Friday.
+
+This was added later.
