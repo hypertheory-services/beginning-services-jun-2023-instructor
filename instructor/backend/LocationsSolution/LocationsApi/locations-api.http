@@ -1,0 +1,16 @@
+### How to get all the locations
+
+GET http://localhost:1337/locations
+Accept: application/json
+
+
+### Adding a locations
+
+POST http://localhost:1337/locations
+Content-Type: application/json
+
+{
+  "name": "Taco Bell",
+  "description": "Bring Tums"
+
+}

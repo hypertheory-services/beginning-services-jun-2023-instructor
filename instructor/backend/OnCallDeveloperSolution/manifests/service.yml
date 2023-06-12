@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: on-call-developer-service
+spec:
+  selector:
+    app: on-call-developer-api
+  ports:
+  - port: 80
+    targetPort: 80
