@@ -29,4 +29,13 @@ GET /clock
 
 Open 9-5, Monday-Friday.
 
-This was added later.
+
+If we are open, return true with no timenext open
+
+If we are closed, return false with the opening time of the next business day.
+
+
+## integration tests
+The most important. Test it from the POV of the consumer of your API.
+
+

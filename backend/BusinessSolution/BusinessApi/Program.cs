@@ -18,7 +18,7 @@ if (app.Environment.IsDevelopment())
 
 app.MapGet("/clock", () =>
 {
-    var response = new GetClockResponse(false, DateTime.Now.AddDays(1));
+    var response = new GetClockResponse(true, null); // Slimed or BS
     return Results.Ok(response);
 });
 // Start the Web Server (Kestrel)
