@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\ITUStudent\dev\beginning-services-jun-2023-instructor\instructor\NewDotNetStuff\NewDotNetStuff\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\ITUStudent\dev\beginning-services-jun-2023-instructor\instructor\NewDotNetStuff\NewDotNetStuff\.editorconfig" />
+  </ItemGroup>
+
 </Project>

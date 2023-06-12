@@ -1,0 +1,7 @@
+﻿@BusinessApi_HostAddress = http://localhost:1337
+
+Get {{BusinessApi_HostAddress}}/clock
+
+###
+
+POST {{BusinessApi_HostAddress}}/clock
