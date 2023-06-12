@@ -38,6 +38,7 @@ public class ResourceTests
     [Fact]
     public async Task DuringClosedHours()
     {
+        // This will fail on saturdays, sundays, before 9 and after 5
         var expected = new GetClockResponse(false, null);
 
         var host = await AlbaHost.For<Program>();
