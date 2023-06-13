@@ -7,7 +7,7 @@ on:
     tags:
       - "v*.*.*"
     paths:
-     - backend/BusinessSolution/
+     - 'backend/BusinessSolution/**'
 
 
 jobs:
