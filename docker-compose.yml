@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:15.2-bullseye
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: db
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db/:/docker-entrypoint-initdb.d/
+
+  business-api:
+    image: jeffrygonzalez/business-api-jun-2023:1.1.0
+    ports:
+      - 1337:80
+    environment:
+      TZ: "America/New_York"
+
+volumes:
+  db_data:
+
