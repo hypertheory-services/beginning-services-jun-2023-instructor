@@ -9,6 +9,6 @@ POST http://localhost:1338/open-issues
 Content-Type: application/json
 
 {
-  "from": "Henry Gonzalez",
+  "from": "Jeff Gonzalez",
   "issue": "Tuning Peg is Broken"
 }

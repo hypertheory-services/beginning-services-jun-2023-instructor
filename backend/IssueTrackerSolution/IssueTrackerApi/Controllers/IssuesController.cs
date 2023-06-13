@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IssueTrackerApi.Controllers;
 
+[ApiController]
 public class IssuesController : ControllerBase
 {
     private readonly IDocumentStore _documentStore;
@@ -26,6 +27,10 @@ public class IssuesController : ControllerBase
     public async Task<ActionResult> AddAnIssue([FromBody] IssueCreateRequest request)
     {
         // Validate it. if invalid, return a 400.
+        //if(!ModelState.IsValid)
+        //{
+        //    return BadRequest(ModelState);
+        //}
         // If it's good, create an issueresponse
         // Save it to the database
         // send them a copy of it.
