@@ -24,6 +24,6 @@ jobs:
     - name: Build
       run: dotnet build --no-restore ./backend/BusinessSolution
     - name: Unit Test
-      run: dotnet test ./backend/BusinessSolution/BusinessClockApi.UnitTests --no-build --verbosity normal
+      run: dotnet test ./backend/BusinessSolution/BusinessApi.UnitTests --no-build --verbosity normal
     - name: Integration Test
-      run: dotnet test ./backend/BusinessSolution/BusinessClockApi.IntegrationTests --no-build --verbosity normal
+      run: dotnet test ./backend/BusinessSolution/BusinessApi.IntegrationTests --no-build --verbosity normal
