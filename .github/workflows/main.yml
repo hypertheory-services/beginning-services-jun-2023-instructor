@@ -1,0 +1,29 @@
+name: CI CD Pipeline
+
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "v*.*.*"
+    #paths:
+     # - "backend/BusinessSolution/**"
+
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./backend/BusinessSolution/
+    - name: Build
+      run: dotnet build --no-restore /backend/BusinessSolution
+    - name: Unit Test
+      run: dotnet test ./backend/BusinessSolution/BusinessClockApi.UnitTests --no-build --verbosity normal
+    - name: Integration Test
+      run: dotnet test ./backend/BusinessSolution/BusinessClockApi.IntegrationTests --no-build --verbosity normal
