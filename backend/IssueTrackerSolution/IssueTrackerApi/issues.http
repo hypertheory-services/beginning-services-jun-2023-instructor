@@ -1,0 +1,14 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+GET http://localhost:1338/open-issues
+
+
+### Adding an Issue
+
+POST http://localhost:1338/open-issues
+Content-Type: application/json
+
+{
+  "from": "Henry Gonzalez",
+  "issue": "Tuning Peg is Broken"
+}
