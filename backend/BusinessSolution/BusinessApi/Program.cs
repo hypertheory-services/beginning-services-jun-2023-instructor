@@ -35,7 +35,7 @@ app.MapGet("/clock", ([FromServices] BusinessClock businessClock) =>
 app.MapGet("/info", () =>
 {
     var fullName = Formatters.FormatName("Bob", "Smith");
-    return Results.Ok(new { number = "555-1212", fullName = fullName });
+    return Results.Ok(new { number = "555-1212", fullName = fullName, age=21 });
 });
 // Start the Web Server (Kestrel)
 
