@@ -22,7 +22,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./backend/BusinessSolution/
     - name: Build
-      run: dotnet build --no-restore /backend/BusinessSolution
+      run: dotnet build --no-restore ./backend/BusinessSolution
     - name: Unit Test
       run: dotnet test ./backend/BusinessSolution/BusinessClockApi.UnitTests --no-build --verbosity normal
     - name: Integration Test
