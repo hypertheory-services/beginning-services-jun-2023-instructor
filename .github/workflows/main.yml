@@ -6,8 +6,8 @@ on:
       - "**"
     tags:
       - "v*.*.*"
-    #paths:
-     # - "backend/BusinessSolution/**"
+    paths:
+     - "backend/BusinessSolution/**"
 
 
 jobs:
