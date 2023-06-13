@@ -16,4 +16,8 @@
 	<ItemGroup>
 		<InternalsVisibleTo Include="BusinessApi.IntegrationTests" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ApiUtils\ApiUtils.csproj" />
+	</ItemGroup>
 </Project>

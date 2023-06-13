@@ -1,6 +1,7 @@
 
 
 
+using ApiUtils;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,12 @@ app.MapGet("/clock", ([FromServices] BusinessClock businessClock) =>
   
     var response = businessClock.GetClockResponse();
     return Results.Ok(response);
+});
+
+app.MapGet("/info", () =>
+{
+    var fullName = Formatters.FormatName("Bob", "Smith");
+    return Results.Ok(new { number = "555-1212", name = fullName });
 });
 // Start the Web Server (Kestrel)
 
