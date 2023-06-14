@@ -15,10 +15,9 @@ var dataConnectionString = builder.Configuration.GetConnectionString("data") ?? 
 builder.Services.AddMarten(options =>
 {
     options.Connection(dataConnectionString);
-    if (builder.Environment.IsDevelopment())
-    {
-        options.AutoCreateSchemaObjects = Weasel.Core.AutoCreate.All;
-    }
+
+    options.AutoCreateSchemaObjects = Weasel.Core.AutoCreate.All;
+
 });
 
 var businessApiUri = builder.Configuration.GetValue<string>("business-api") ?? throw new ArgumentException("Need a URI for the Business Api");
