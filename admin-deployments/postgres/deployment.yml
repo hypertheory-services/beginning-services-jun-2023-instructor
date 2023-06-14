@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres
-  namespace: locations-app
+  namespace: company
 spec:
   selector:
     matchLabels:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: postgres:12.13-alpine3.17
+        image: postgres:15.2-bullseye
         resources:
           limits:
             memory: "128Mi"
@@ -23,4 +23,6 @@ spec:
         - containerPort: 5432
         env:
           - name: POSTGRES_PASSWORD
-            value: TokyoJoe138!
+            value: password
+          - name: POSTGRES_USER
+            value: user
