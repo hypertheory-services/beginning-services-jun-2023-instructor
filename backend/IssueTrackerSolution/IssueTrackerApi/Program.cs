@@ -1,4 +1,5 @@
 
+using IssueTrackerApi.Adapters;
 using Marten;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,12 @@ builder.Services.AddMarten(options =>
     {
         options.AutoCreateSchemaObjects = Weasel.Core.AutoCreate.All;
     }
+});
+
+var businessApiUri = builder.Configuration.GetValue<string>("business-api") ?? throw new ArgumentException("Need a URI for the Business Api");
+builder.Services.AddHttpClient<BusinessApiAdapter>(client =>
+{
+    client.BaseAddress = new Uri(businessApiUri);
 });
 
 var app = builder.Build();

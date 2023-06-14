@@ -20,3 +20,15 @@ public record IssueCreatedResponse
     public DateTimeOffset? ClosedAt { get; init; }
 
 }
+
+public record IssueCreatedResponseWithSupportInfo 
+{
+    public IssueCreatedResponse Issue { get; init; } = new();
+    public SupportModel Support { get; init; } = new();
+}
+public record SupportModel
+{
+    public string SupportNumber { get; init; } = string.Empty;
+    public bool IsOpenNow { get; init; }
+    public DateTime? OpensAt { get; init; }
+}

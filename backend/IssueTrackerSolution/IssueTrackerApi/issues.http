@@ -9,6 +9,6 @@ POST http://localhost:1338/open-issues
 Content-Type: application/json
 
 {
-    "from": "Stacey Gonzalez",
-  "issue": "Her Husband didn't do the dishes. Again"
+  "from": "Violet",
+  "issue": "Room is messy."
 }

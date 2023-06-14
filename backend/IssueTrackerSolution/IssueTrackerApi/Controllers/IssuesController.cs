@@ -1,4 +1,5 @@
-﻿using IssueTrackerApi.Models;
+﻿using IssueTrackerApi.Adapters;
+using IssueTrackerApi.Models;
 using Marten;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,13 @@ namespace IssueTrackerApi.Controllers;
 public class IssuesController : ControllerBase
 {
     private readonly IDocumentStore _documentStore;
+    private readonly BusinessApiAdapter _businessApi;
 
-    public IssuesController(IDocumentStore documentStore)
+
+    public IssuesController(IDocumentStore documentStore, BusinessApiAdapter businessApi)
     {
         _documentStore = documentStore;
+        _businessApi = businessApi;
     }
 
     [HttpGet("/open-issues")]
@@ -46,6 +50,19 @@ public class IssuesController : ControllerBase
         using var session = _documentStore.LightweightSession();
         session.Insert(response);
         await session.SaveChangesAsync();
-        return Ok(response);
+
+        var supportInfo = await _businessApi.GetClockResponseAsync();
+
+        var actualResponse = new IssueCreatedResponseWithSupportInfo
+        {
+            Issue = response,
+            Support = new SupportModel
+            {
+                IsOpenNow = supportInfo.IsOpen,
+                OpensAt = supportInfo.IsOpen ? null : supportInfo.NextOpenTime,
+                SupportNumber  = "(800) 555-5555"
+            }
+        };
+        return Ok(actualResponse);
     }
 }
