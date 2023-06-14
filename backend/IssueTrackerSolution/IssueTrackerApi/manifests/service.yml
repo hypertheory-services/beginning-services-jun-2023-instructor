@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: issue-tracker-api-service
+spec:
+  selector:
+    app: issue-tracker-api
+  ports:
+  - port: 80
+    targetPort: 80
