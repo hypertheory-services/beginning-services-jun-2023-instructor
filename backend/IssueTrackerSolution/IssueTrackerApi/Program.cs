@@ -1,4 +1,5 @@
 
+using IssueTrackerApi;
 using IssueTrackerApi.Adapters;
 using Marten;
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +25,8 @@ var businessApiUri = builder.Configuration.GetValue<string>("business-api") ?? t
 builder.Services.AddHttpClient<BusinessApiAdapter>(client =>
 {
     client.BaseAddress = new Uri(businessApiUri);
-});
+}).AddPolicyHandler(SrePolicies.GetDefaultRetryPolicy())
+.AddPolicyHandler(SrePolicies.GetDefaultCircuitBreaker());
 
 var app = builder.Build();
 
