@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: issue-tracker-api
+  namespace: company
+spec:
+  selector:
+    matchLabels:
+      app: issue-tracker-api
+  template:
+    metadata:
+      labels:
+        app: issue-tracker-api
+    spec:
+      containers:
+      - name: issue-tracker-api
+        image: jeffrygonzalez/issue-tracker-api-jun-2023:v1.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        env:
+          - name: business-api
+            value: http://business-api-service
+          - name: ConnectionStrings__data
+            value: "Server=postgres-service;Database=issues_data;User Id=user;Password=password"
