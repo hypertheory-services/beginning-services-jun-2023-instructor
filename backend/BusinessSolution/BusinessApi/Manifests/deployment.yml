@@ -4,6 +4,7 @@ metadata:
   name: business-api
   namespace: company
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: business-api
