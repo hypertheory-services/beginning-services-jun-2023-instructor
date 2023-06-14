@@ -4,7 +4,7 @@ metadata:
   name: business-api
   namespace: company
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: business-api
@@ -16,6 +16,9 @@ spec:
       containers:
       - name: business-api
         image: jeffrygonzalez/business-api-jun-2023:1.1.0
+        env:
+          - name: TZ
+            value: "America/New_York" 
         resources:
           requests:
             memory: "128Mi"
