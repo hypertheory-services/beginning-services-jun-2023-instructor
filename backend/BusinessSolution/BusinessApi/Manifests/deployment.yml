@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: business-api
+  namespace: company
+spec:
+  selector:
+    matchLabels:
+      app: business-api
+  template:
+    metadata:
+      labels:
+        app: business-api
+    spec:
+      containers:
+      - name: business-api
+        image: jeffrygonzalez/business-api-jun-2023:1.1.0
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
